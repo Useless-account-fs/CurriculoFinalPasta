@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101827">
+    <title>CV Manager | Enzo Ribeiro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="brand">
+            <span class="brand-icon">CV</span>
+            <div>
+                <h2>CV Manager</h2>
+                <small>Gerenciador de currículo</small>
+            </div>
+        </div>
+
+        <nav id="navigation">
+            <button class="nav-item active" data-section="overview">
+                <span>⌂</span> Visão geral
+            </button>
+            <button class="nav-item" data-section="personalInformation">
+                <span>♙</span> Dados pessoais
+            </button>
+            <button class="nav-item" data-section="professionalSummary">
+                <span>▤</span> Resumo profissional
+            </button>
+            <button class="nav-item" data-section="professionalExperience">
+                <span>▣</span> Experiências
+            </button>
+            <button class="nav-item" data-section="education">
+                <span>▤</span> Formação
+            </button>
+            <button class="nav-item" data-section="skills">
+                <span>✧</span> Habilidades
+            </button>
+            <button class="nav-item" data-section="languages">
+                <span>文</span> Idiomas
+            </button>
+            <button class="nav-item" data-section="certifications">
+                <span>♧</span> Certificações
+            </button>
+            <button class="nav-item" data-section="projects">
+                <span>⌘</span> Projetos
+            </button>
+            <button class="nav-item" data-section="courses">
+                <span>▧</span> Cursos
+            </button>
+            <button class="nav-item" data-section="additionalInformation">
+                <span>☰</span> Informações adicionais
+            </button>
+            <button class="nav-item" data-section="preferences">
+                <span>⚙</span> Preferências
+            </button>
+            <button class="nav-item" data-section="json">
+                <span>{ }</span> Editor JSON
+            </button>
+        </nav>
+
+        <div class="sidebar-footer">
+            <span class="status-dot"></span>
+            Armazenamento local
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h1 id="pageTitle">Visão geral</h1>
+                <p>Gerencie suas informações profissionais.</p>
+            </div>
+
+            <div class="top-actions">
+                <button class="btn btn-outline" id="exportButton">
+                    ↓ Exportar JSON
+                </button>
+                <button class="btn btn-primary" id="saveButton">
+                    Salvar alterações
+                </button>
+            </div>
+        </header>
+
+        <div id="notification" class="notification" hidden></div>
+
+        <section id="content">
+
+            <!-- VISÃO GERAL -->
+            <div id="overview" class="page active">
+
+                <div class="welcome-card">
+                    <div>
+                        <span class="eyebrow">SEU PERFIL PROFISSIONAL</span>
+                        <h2 id="welcomeName">Enzo Faustino Ribeiro</h2>
+                        <p id="welcomeDescription">
+                            Gerencie seu currículo em um só lugar.
+                        </p>
+                    </div>
+                    <div class="welcome-icon">CV</div>
+                </div>
+
+                <div class="stats-grid" id="stats"></div>
+
+                <div class="panel">
+                    <div class="panel-header">
+                        <div>
+                            <h3>Resumo do currículo</h3>
+                            <p>Informações principais do seu perfil.</p>
+                        </div>
+                        <button class="btn btn-outline"
+                            onclick="navigate('personalInformation')">
+                            Editar perfil
+                        </button>
+                    </div>
+
+                    <div id="overviewDetails" class="details-grid"></div>
+                </div>
+
+                <div class="panel">
+                    <h3>Objetivo profissional</h3>
+                    <p id="overviewObjective" class="objective-text"></p>
+                </div>
+
+            </div>
+
+            <!-- FORMULÁRIOS DINÂMICOS -->
+            <div id="dynamicPage" class="page">
+
+                <div class="panel">
+                    <div class="panel-header">
+                        <div>
+                            <h3 id="sectionTitle"></h3>
+                            <p id="sectionDescription"></p>
+                        </div>
+
+                        <button class="btn btn-primary"
+                            id="addButton">
+                            + Adicionar
+                        </button>
+                    </div>
+
+                    <div id="sectionForm" class="form-container" hidden>
+                        <h3 id="formTitle">Novo registro</h3>
+
+                        <form id="recordForm">
+                            <div id="formFields" class="form-grid"></div>
+
+                            <div class="form-actions">
+                                <button type="button"
+                                    class="btn btn-outline"
+                                    id="cancelButton">
+                                    Cancelar
+                                </button>
+
+                                <button type="submit"
+                                    class="btn btn-primary">
+                                    Salvar registro
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="records" class="records-list"></div>
+                </div>
+
+            </div>
+
+            <!-- EDITOR JSON -->
+            <div id="json" class="page">
+                <div class="panel">
+                    <div class="panel-header">
+                        <div>
+                            <h3>Editor JSON</h3>
+                            <p>Edite, importe ou substitua o currículo completo.</p>
+                        </div>
+                    </div>
+
+                    <div class="json-toolbar">
+                        <button class="btn btn-outline" id="formatButton">
+                            Formatar JSON
+                        </button>
+
+                        <label class="btn btn-outline file-label">
+                            Importar arquivo
+                            <input type="file" id="importFile"
+                                accept=".json,application/json" hidden>
+                        </label>
+                    </div>
+
+                    <textarea id="jsonEditor"
+                        class="json-editor"
+                        spellcheck="false"></textarea>
+
+                    <div class="form-actions">
+                        <button class="btn btn-outline" id="reloadJSON">
+                            Recarregar dados
+                        </button>
+
+                        <button class="btn btn-primary" id="applyJSON">
+                            Aplicar JSON
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <footer>
+            CV Manager © 2026 — Gerenciador de currículo
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+</body>
+</html>
