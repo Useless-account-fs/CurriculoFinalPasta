@@ -15,7 +15,7 @@ const initialCV = {
     personalInformation: {
         fullName: "Enzo Faustino Ribeiro",
         professionalTitle: "",
-        profilePhoto: "",
+        profilePhoto: "https://ibb.co/jvmL6McK",
         email: "zumbigg2@gmail.com",
         phone: "",
         whatsapp: "11950930704",
